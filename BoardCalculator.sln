@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardCalculator", "BoardCalculator.csproj", "{A882FFF6-4188-49AA-9D56-65123B368E90}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A882FFF6-4188-49AA-9D56-65123B368E90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A882FFF6-4188-49AA-9D56-65123B368E90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A882FFF6-4188-49AA-9D56-65123B368E90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A882FFF6-4188-49AA-9D56-65123B368E90}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {21279BE0-78BD-4F4F-B062-2C1A2333D37C}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,156 @@
+﻿@model IEnumerable<BoardCalculator.Models.CutByBoard>
+
+@{
+    ViewData["Title"] = "ViewCutByBoard";
+}
+
+<h1>ViewCutByBoard</h1>
+
+<p>
+    <input type="button" class="btn btn-toolbar updateModal col-xs-12  btn-primary" id="btnCutByBoardCreate" value="Add Entry" name="/EditCutByBoard/-1">
+</p>
+<table id="CutbyBoadTblId" class="table">
+    <thead>
+        <tr>
+            <th>
+               
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.key)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfCuts)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Scrap)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MinLength)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cut1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cut2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cut3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cut4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cut5)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cut6)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cut7)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cut8)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cut9)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cut10)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cut11)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cut12)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                       <td>
+                <a asp-action="Edit" asp-route-id="@item.CutId">Edit</a> |
+                 <input type="button" class="btn btn-toolbar btn-warning  col-xs-12 updateModal" id="btnProjectEdit" value="edit" name="/EditCutByBoard/@item.key">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.key)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfCuts)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Scrap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinLength)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cut1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cut2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cut3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cut4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cut5)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cut6)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cut7)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cut8)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cut9)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cut10)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cut11)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cut12)
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>
+
+            
+    
+@section Scripts{
+    <script>
+        var _pageUrl = "";
+        $(document).ready(function() {
+            var _dt = $("#CutbyBoadTblId").DataTable({
+                  scrollY: '33vh',
+            });
+            _dt.draw(); 
+        });
+
+    //$(document).on('click', '.updateModal', function() {
+    //     _pageUrl = "/Home" + $(this).prop('name');
+    //    $('#modaldiv').empty();
+    //    $('#popupmodal').modal("show");
+    //    $('#modaldiv').load(_pageUrl);
+
+
+    //});
+</script>
+}

@@ -1,0 +1,128 @@
+﻿@model IEnumerable<BoardCalculator.Models.Project>
+
+@{
+    ViewData["Title"] = "Projects";
+    
+}
+
+<h1>Projects</h1>
+<p>
+    <input type="button" class="btn btn-toolbar updateModal col-xs-12  btn-primary" id="btnProjectCreate" value="Create Project" name="/EditProjects/-1">
+</p>
+<div class="col-md-10">
+    <table id="ProjectTblId" class="table">
+    <thead>
+        <tr>
+             <th>
+                @Html.DisplayNameFor(model => model.ProjectId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Active)
+                </td>
+                <td class="col-md-12" style="    display: flex;">
+                    <input type="button" class="btn btn-toolbar btn-warning  col-xs-6 updateModal" id="btnProjectEdit" value="edit" name="/EditProjects/@item.ProjectId">
+                    &nbsp;&nbsp;<a class="btn btn-info col-xs-2" id="btnViewProject" value="view" asp-controller="Home" asp-action="ViewProject" asp-route-id="@item.ProjectId" name="/ViewProject/@item.ProjectId" >View</a>
+                    &nbsp;&nbsp;<a class="btn btn-secondary col-xs-2" id="btnPrintProject" value="Print" asp-controller="Home" asp-action="PrintProject" asp-route-id="@item.ProjectId" name="/PrintProject/@item.ProjectId" >Print</a>
+                        
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+
+<div class="modal fade col-lg-12" id="popupmodal" role="dialog" >
+  <div class="modal-dialog">
+    <div class="modal-content" id="modaldiv">
+       
+    </div>
+  </div>
+</div>
+    <style>
+        .dataTables_filter {
+           width: 50%;
+           float: right;
+           text-align: right;
+        }
+        
+        .modal {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 99999; /* Sit on top */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+          background-color: #fefefe;
+          margin: 15% auto; /* 15% from the top and centered */
+          padding: 20px;
+          border: 1px solid #888;
+          width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button */
+        .close {
+          color: #aaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+          color: black;
+          text-decoration: none;
+          cursor: pointer;
+        }
+
+    </style>
+    
+
+
+@section Scripts{
+    <script>
+        var _pageUrl = "";
+        $(document).ready(function() {
+            var _dt = $("#ProjectTblId").DataTable({
+                  scrollY: '33vh',
+            });
+            _dt.draw(); 
+        });
+
+    $(document).on('click', '.updateModal', function() {
+         _pageUrl = "/Home" + $(this).prop('name');
+        $('#modaldiv').empty();
+        $('#popupmodal').modal("show");
+        $('#modaldiv').load(_pageUrl);
+
+
+    });
+</script>
+}
+

@@ -1,0 +1,105 @@
+﻿@model BoardCalculator.Models.Project
+
+@{
+    ViewData["Title"] = "EditProjects";
+}
+
+@Html.AntiForgeryToken()
+@*asp-action="EditProjects"*@
+
+<form id="EditProjectId" method="post"
+data-ajax="true" data-ajax-method="POST"
+data-ajax-update = "#modaldiv"
+         data-ajax-begin="OnBegin" data-ajax-failure="OnFailure"
+          data-ajax-success="OnSuccess" data-ajax-complete="OnComplete"
+          data-ajax-url="/Home/EditProjects"
+>
+<div class="modal-header">
+    @{
+        if (Model.ProjectId == -1)
+        {
+                                    <h2>Create Project</h2>
+        }
+        else
+        {
+                                    <h2>Edit Project</h2>
+        }
+    }
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+          
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @*<input type="hidden" asp-for="ProjectId" />*@
+                @Html.HiddenFor(m=>m.ProjectId)
+                <div class="form-group col-md-12">
+                    <label asp-for="ProjectName" class="control-label col-md-5"></label>
+                    <input asp-for="ProjectName" class="form-control col-md-5" />
+                    <span asp-validation-for="ProjectName" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check col-md-12">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
+                    </label>
+                </div>
+                
+       
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="form-group">
+        <div class="row col-xs-offset-1" style="float:left;">
+            <input type="button" class="col-md-5 btn btn-secondary" id="btnCancelModal" value="Cancel" data-dismiss="modal" onclick="HideModal()"/>
+            <button type="button" class="col-md-5 btn btn-warning" id="btnCreateUpdateModal" value="CreateUpdate" onclick="EditProject()">
+                    @{
+                        if (Model.ProjectId == -1)
+                        {
+                                                    <span>Create Project</span>
+                        }
+                        else
+                        {
+                                                    <span>Update Project</span>
+                        }
+                    }
+            </button>
+        </div>
+    </div>
+     <div class="form-group">
+         <span id="msgId" class="text-danger">
+
+         </span>
+     </div>
+
+</div>
+</form>
+
+ <script>
+       
+        function EditProject()
+        {
+            $.post("/Home/EditProjects", $("#EditProjectId").serialize(), function(data) {
+                debugger;
+                //alert(data);
+                if(data.Res=="success")
+                {
+                    $("#btnCreateUpdateModal").prop("disabled",true);
+                }
+                $("#msgId").text(data.Msg);
+            });
+        }
+
+        function HideModal()
+        {
+              $('#popupmodal').modal("hide");
+                location.reload();
+        }
+    </script>
+@section Scripts {
+    @*<script  src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"/>*@
+   
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

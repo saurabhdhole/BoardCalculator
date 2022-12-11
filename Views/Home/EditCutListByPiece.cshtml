@@ -1,0 +1,226 @@
+﻿@model BoardCalculator.Models.CutListByPiece
+
+@{
+    ViewData["Title"] = "EditCutListByPiece";
+    List<SelectListItem> CommonSizesDdl = (List<SelectListItem>)ViewData["CommonSizesDdl"];
+    List<SelectListItem> MaterialsDdl =   (List<SelectListItem>)ViewData["MaterialsDdl"];
+}
+
+<form id="EditCutListByPieceId" method="post"
+      data-ajax="true" data-ajax-method="POST"
+      data-ajax-update="#modaldiv"
+      data-ajax-begin="OnBegin" data-ajax-failure="OnFailure"
+      data-ajax-success="OnSuccess" data-ajax-complete="OnComplete"
+      data-ajax-url="/Home/EditCutListByPiece">
+    <div class="modal-header">
+        @{
+            if (Model.CutId == -1)
+            {
+                                    <h2>Create CutListByPiece</h2>
+            }
+            else
+            {
+                                    <h2>Edit CutListByPiece</h2>
+            }
+        }
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="CutId" />
+                <input type="hidden" asp-for="ProjectId" />
+
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="key" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="key" class="form-control" />
+                        <span asp-validation-for="key" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="Part" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Part" class="form-control" />
+                        <span asp-validation-for="Part" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="SizeId" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <select asp-for="SizeId"  asp-items="@CommonSizesDdl" class="form-select"> </select>
+                        @*<span asp-validation-for="SizeId" class="text-danger"></span>*@
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="FinishedCut" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="FinishedCut" class="form-control" />
+                        <span asp-validation-for="FinishedCut" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="CutLength" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="CutLength" class="form-control" />
+                        <span asp-validation-for="CutLength" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="Pcs" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Pcs" class="form-control" />
+                        <span asp-validation-for="Pcs" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="MatId" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <select asp-for="MatId" asp-items="@MaterialsDdl" class="form-select" > </select>
+                        <span asp-validation-for="MatId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="JigSaw" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="JigSaw" class="form-control updateCost" />
+                        <span asp-validation-for="JigSaw" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="Milter" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Milter" class="form-control updateCost" />
+                        <span asp-validation-for="Milter" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px; ">
+                    <label asp-for="TableSaw" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="TableSaw" class="form-control updateCost" />
+                        <span asp-validation-for="TableSaw" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="Router" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Router" class="form-control updateCost" />
+                        <span asp-validation-for="Router" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="Screws" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Screws" class="form-control updateCost" />
+                        <span asp-validation-for="Screws" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="Glue" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Glue" class="form-control updateCost" />
+                        <span asp-validation-for="Glue" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="Finishing" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Finishing" class="form-control updateCost" />
+                        <span asp-validation-for="Finishing" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="Tennon" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Tennon" class="form-control updateCost" />
+                        <span asp-validation-for="Tennon" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="HandelingCost" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="HandelingCost" class="form-control" disabled />
+                        <span asp-validation-for="HandelingCost" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <div class="form-group">
+            <div class="row col-xs-offset-1" style="float:left;">
+                <input type="button" class="col-md-5 btn btn-secondary" value="Cancel" data-dismiss="modal" onclick="HideModal()" />
+                <button type="button" class="col-md-5 btn btn-warning" id="btnCreateUpdateModalCutListByPiece" value="CreateUpdate" onclick="EditCutListByPiece()">
+                    @{
+                        if (Model.CutId == -1)
+                        {
+                                                <span>Create CutListByPiece</span>
+                        }
+                        else
+                        {
+                                                <span>Update CutListByPiece</span>
+                        }
+                    }
+                </button>
+            </div>
+        </div>
+        <div class="form-group">
+            <span id="msgIdCutListByPiece" class="text-danger">
+
+            </span>
+        </div>
+
+    </div>
+</form>
+
+<script>
+    
+    $(document).ready(function() {
+
+    });
+    function EditCutListByPiece() {
+        $.post("/Home/EditCutListByPiece", $("#EditCutListByPieceId").serialize(), function(data) {
+            debugger;
+            //alert(data);
+               if(data.Res=="success")
+                {
+                    $("#btnCreateUpdateModalCutListByPiece").prop("disabled",true);
+                }
+            $("#msgIdCutListByPiece").text(data.Msg);
+        });
+    }
+
+    
+    $(document).on('click', '.updateCost', function() {
+        var JigSaw = $('#JigSaw').val() * 0.042;
+        var Milter = $('#Milter').val()*0.25;
+        var TableSaw = $('#TableSaw').val()*1;
+        var Router = $('#Router').val()*0.042;
+        var Screws = $('#Screws').val()*0.12;
+        var Glue = $('#Glue').val()*5;
+        var Finishing = $('#Finishing').val()*25;
+        var Tennon = $('#Tennon').val()*3;
+
+        var CutLength = $('#CutLength').val();
+        var Pcs = $('#Pcs').val();
+
+        var cost = JigSaw + Milter + TableSaw + Router + Screws + Glue + Finishing + Tennon;
+        $("#HandelingCost").val(cost);
+
+    });
+
+    function HideModal() {
+        $('#popupmodal').modal("hide");
+        location.reload();
+    }
+</script>
+@section Scripts {
+    @*<script  src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"/>*@
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

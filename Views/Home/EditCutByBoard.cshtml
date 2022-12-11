@@ -1,0 +1,207 @@
+﻿@model BoardCalculator.Models.CutByBoard
+
+@{
+    ViewData["Title"] = "EditCutByBoard";
+}
+
+<form id="EditCutByBoardId" method="post"
+      data-ajax="true" data-ajax-method="POST"
+      data-ajax-update="#modaldiv"
+      data-ajax-begin="OnBegin" data-ajax-failure="OnFailure"
+      data-ajax-success="OnSuccess" data-ajax-complete="OnComplete"
+      data-ajax-url="/Home/EditCutByBoard">
+    <div class="modal-header">
+        @{
+            if (Model.CutId == -1)
+            {
+                    <h2>Create CutByBoard</h2>
+            }
+            else
+            {
+                    <h2>Edit CutByBoard</h2>
+            }
+        }
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="CutId" />
+                <input type="hidden" asp-for="ProjectId" />
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="key" class="control-label col-md-4"></label><div class="col-md-8">
+                        <input asp-for="key" class="form-control" />
+                        <span asp-validation-for="key" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="NumberOfCuts" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="NumberOfCuts" class="form-control" />
+                        <span asp-validation-for="NumberOfCuts" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="Scrap" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Scrap" class="form-control" />
+                        <span asp-validation-for="Scrap" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="MinLength" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="MinLength" class="form-control" />
+                        <span asp-validation-for="MinLength" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="Weight" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Weight" class="form-control" />
+                        <span asp-validation-for="Weight" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="Cut1" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Cut1" class="form-control" />
+                        <span asp-validation-for="Cut1" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="Cut2" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Cut2" class="form-control" />
+                        <span asp-validation-for="Cut2" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="Cut3" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Cut3" class="form-control" />
+                        <span asp-validation-for="Cut3" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="Cut4" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Cut4" class="form-control" />
+                        <span asp-validation-for="Cut4" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="Cut5" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Cut5" class="form-control" />
+                        <span asp-validation-for="Cut5" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="Cut6" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Cut6" class="form-control" />
+                        <span asp-validation-for="Cut6" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="Cut7" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Cut7" class="form-control" />
+                        <span asp-validation-for="Cut7" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="Cut8" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Cut8" class="form-control" />
+                        <span asp-validation-for="Cut8" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="Cut9" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Cut9" class="form-control" />
+                        <span asp-validation-for="Cut9" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="Cut10" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Cut10" class="form-control" />
+                        <span asp-validation-for="Cut10" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="Cut11" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Cut11" class="form-control" />
+                        <span asp-validation-for="Cut11" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top:8px;">
+                    <label asp-for="Cut12" class="control-label col-md-4"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Cut12" class="form-control" />
+                        <span asp-validation-for="Cut12" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <div class="form-group">
+            <div class="row col-xs-offset-1" style="float:left;">
+                <input type="button" class="col-md-5 btn btn-secondary" value="Cancel" data-dismiss="modal" onclick="HideModal()" />
+                <button type="button" class="col-md-5 btn btn-warning" id="btnCreateUpdateModalCutByBoard" value="CreateUpdate" onclick="EditCutByBoard()">
+                    @{
+                        if (Model.CutId == -1)
+                        {
+                                <span>Create CutByBoard</span>
+                        }
+                        else
+                        {
+                                <span>Update CutByBoard</span>
+                        }
+                    }
+                </button>
+            </div>
+        </div>
+        <div class="form-group">
+            <span id="msgIdCutByBoard" class="text-danger">
+
+            </span>
+        </div>
+
+    </div>
+</form>
+
+<script>
+
+    function EditCutByBoard() {
+        $.post("/Home/EditCutByBoard", $("#EditCutByBoardId").serialize(), function(data) {
+            debugger;
+            //alert(data);
+               if(data.Res=="success")
+                {
+                    $("#btnCreateUpdateModalCutByBoard").prop("disabled",true);
+                }
+            $("#msgIdCutByBoard").text(data.Msg);
+        });
+    }
+
+    function HideModal() {
+        $('#popupmodal').modal("hide");
+        location.reload();
+    }
+</script>
+@section Scripts {
+    @*<script  src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"/>*@
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

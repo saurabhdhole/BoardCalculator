@@ -1,0 +1,126 @@
+﻿@model IEnumerable<BoardCalculator.Models.CutListByPiece>
+
+@{
+    ViewData["Title"] = "ViewCutListByPiece";
+}
+
+<h1>ViewCutListByPiece</h1>
+
+<p>
+    <input type="button" class="btn btn-toolbar updateModal col-xs-12  btn-primary" id="btnCutListByPiecesCreate" value="Add Entry" name="/CutListByPieces/-1">
+</p>
+<table class="table" id="CutListByPiecetblId">
+    <thead>
+        <tr>    
+                  <th></th>
+
+            <th>
+                @Html.DisplayName("key")
+            </th>
+            <th>
+                @Html.DisplayName("Part")
+            </th>
+            <th>
+                @Html.DisplayName("SizeId")
+            </th>
+            <th>
+                @Html.DisplayName("FinishedCut")
+            </th>
+            <th>
+                @Html.DisplayName("CutLength")
+            </th>
+            <th>
+                @Html.DisplayName("Pcs")
+            </th>
+            <th>
+                @Html.DisplayName("MatId")
+            </th>
+            <th>
+                @Html.DisplayName("JigSaw")
+            </th>
+            <th>
+                @Html.DisplayName("Milter")
+            </th>
+            <th>
+                @Html.DisplayName("TableSaw")
+            </th>
+            <th>
+                @Html.DisplayName("Router")
+            </th>
+            <th>
+                @Html.DisplayName("Screws")
+            </th>
+            <th>
+                @Html.DisplayName("Glue")
+            </th>
+            <th>
+                @Html.DisplayName("Finishing")
+            </th>
+            <th>
+                @Html.DisplayName("Tennon")
+            </th>
+            <th>
+                @Html.DisplayName("HandelingCost")
+            </th>
+      
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                        <td>
+                <input type="button" class="btn btn-toolbar btn-warning  col-xs-12 updateModal" id="btnCutListByPiecesEdit" value="edit" name="/EditCutListByPieces/@item.CutId">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.key)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Part)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SizeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FinishedCut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CutLength)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pcs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MatId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JigSaw)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Milter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TableSaw)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Router)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Screws)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Glue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Finishing)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tennon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HandelingCost)
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,189 @@
+﻿@{
+    ViewData["Title"] = "ViewProject";
+   // int projectId = (int)ViewData["ProjectId"];
+    List<SelectListItem> CommonSizesDdl = ( List<SelectListItem>)ViewData["CommonSizesDdl"];
+    List<SelectListItem> MaterialsDdl = ( List<SelectListItem>)ViewData["MaterialsDdl"];
+}
+
+<h1>ViewProject</h1>
+
+<div class="row">
+    <div class="container" style="display:flex;">
+        <div class="col-md-5" style="margin-left: 10px;">
+            <h1>Lumber Shopping List</h1>
+            <table class="table" id="CutListByPieceTblId">
+                <thead>
+                    <tr>
+
+                        <th>
+                            @Html.DisplayName("key")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Part")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Size")
+                        </th>
+                        <th>
+                            @Html.DisplayName("FinishedCut")
+                        </th>
+                        <th>
+                            @Html.DisplayName("CutLength")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Pcs")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Mat")
+                        </th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in (List<CutListByPiece>)ViewData["ViewCutListByPiece"])
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.key)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Part)
+                            </td>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.SizeId)*@
+                                 @CommonSizesDdl.First(x=>x.Value == item.SizeId.ToString()).Text
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FinishedCut)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CutLength)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Pcs)
+                            </td>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.MatId)*@
+                                @MaterialsDdl.First(x=>x.Value == item.MatId.ToString()).Text
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+        <div class="col-md-2" style="margin-left: 2px;">
+        </div>
+        <div class="col-md-5" style="margin-left: 2px;">
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Cut List</h1>
+            <table id="CutbyBoadTblId" class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("key")
+                        </th>
+
+                        <th>
+                            @Html.DisplayName("Cut1")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cut2")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cut3")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cut4")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cut5")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cut6")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cut7")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cut8")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cut9")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cut10")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cut11")
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in (List<CutByBoard>)ViewData["ViewCutByBoard"])
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.key)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut1)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut2)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut3)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut4)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut5)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut6)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut7)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut8)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut9)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut10)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut11)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+
+        $(document).ready(function() {
+
+
+
+
+        });
+    </script>
+}

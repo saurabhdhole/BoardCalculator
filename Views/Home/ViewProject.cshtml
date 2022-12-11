@@ -1,0 +1,366 @@
+﻿@{
+    ViewData["Title"] = "ViewProject";
+    int projectId = (int)ViewData["ProjectId"];
+
+    List<SelectListItem> CommonSizesDdl = (List<SelectListItem>)ViewData["CommonSizesDdl"];
+    List<SelectListItem> MaterialsDdl = (List<SelectListItem>)ViewData["MaterialsDdl"];
+}
+<div class="row">
+    <div class="container" style="display:flex;">
+
+
+        <div class="col-md-5" style="margin-left: 10px;">
+            <h1>CutListByPiece</h1>
+            <p>
+                <input type="button" class="btn btn-toolbar updateModal col-xs-12  btn-primary" id="btnCutListByPiecesCreate" value="Add Entry" name="/EditCutListByPiece?cutId=-1&projectId=@projectId">
+            </p>
+            <table class="table" id="CutListByPieceTblId">
+                <thead>
+                    <tr>
+                        <th>
+
+                        </th>
+                        <th>
+                            @Html.DisplayName("key")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Part")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Size")
+                        </th>
+                        <th>
+                            @Html.DisplayName("FinishedCut")
+                        </th>
+                        <th>
+                            @Html.DisplayName("CutLength")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Pcs")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Mat")
+                        </th>
+                        <th>
+                            @Html.DisplayName("JigSaw")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Milter")
+                        </th>
+                        <th>
+                            @Html.DisplayName("TableSaw")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Router")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Screws")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Glue")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Finishing")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Tennon")
+                        </th>
+                        <th>
+                            @Html.DisplayName("HandelingCost")
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in (List<CutListByPiece>)ViewData["ViewCutListByPiece"])
+                    {
+                        <tr>
+                            <td>
+                                <input type="button" class="btn btn-toolbar btn-warning  col-xs-12 updateModal" id="btnCutListByPiecesEdit" value="edit" name="/EditCutListByPiece?cutId=@item.CutId&projectId=@item.ProjectId">
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.key)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Part)
+                            </td>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.SizeId)*@
+                                @CommonSizesDdl.First(x=>x.Value == item.SizeId.ToString()).Text
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FinishedCut)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CutLength)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Pcs)
+                            </td>
+                            <td>
+                                @MaterialsDdl.First(x=>x.Value == item.MatId.ToString()).Text
+                                @*@Html.DisplayFor(modelItem => item.MatId)*@
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.JigSaw)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Milter)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TableSaw)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Router)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Screws)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Glue)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Finishing)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Tennon)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HandelingCost)
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="col-md-2" style="margin-left: 2px; align-self: center;    text-align: -webkit-center;">
+            <input type="button" class="btn btn-toolbar btn-warning  col-xs-12" id="btnCreateCutByBoard" onclick="CreateCutByBoard()" value="Create Cut"  />
+        </div>
+        <div class="col-md-5">
+            <h1>CutByBoard</h1>
+
+            <p>
+                <input type="button" class="btn btn-toolbar updateModal col-xs-12  btn-primary" id="btnCutByBoardCreate" value="Add Entry" name="/EditCutByBoard?cutId=-1&projectId=@projectId">
+            </p>
+            <table id="CutbyBoadTblId" class="table">
+                <thead>
+                    <tr>
+                        <th>
+
+                        </th>
+                        <th>
+                            @Html.DisplayName("key")
+                        </th>
+                        <th>
+                            @Html.DisplayName("NumberOfCuts")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Scrap")
+                        </th>
+                        <th>
+                            @Html.DisplayName("MinLength")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Weight")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cut1")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cut2")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cut3")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cut4")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cut5")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cut6")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cut7")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cut8")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cut9")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cut10")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cut11")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cut12")
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in (List<CutByBoard>)ViewData["ViewCutByBoard"])
+                    {
+                        <tr>
+                            <td>
+                                <input type="button" class="btn btn-toolbar btn-warning  col-xs-12 updateModal" id="btnCutByBoardEdit" value="edit" name="/EditCutByBoard?cutId=@item.CutId&projectId=@projectId">
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.key)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NumberOfCuts)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Scrap)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MinLength)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Weight)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut1)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut2)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut3)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut4)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut5)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut6)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut7)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut8)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut9)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut10)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut11)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cut12)
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal fade col-lg-12" id="popupmodal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="modaldiv">
+        </div>
+    </div>
+</div>
+<style>
+    .dataTables_filter {
+        width: 50%;
+        float: right;
+        text-align: right;
+    }
+
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 99999; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 100%; /* Could be more or less, depending on screen size */
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+</style>
+
+
+@section Scripts{
+    <script>
+        var _pageUrl = "";
+        $(document).ready(function() {
+            var _dt1 = $("#CutbyBoadTblId").DataTable({
+                scrollY: '33vh',
+                scrollX: true
+            });
+
+            var _dt2 = $("#CutListByPieceTblId").DataTable({
+                scrollY: '33vh',
+                scrollX: true
+            });
+
+            _dt1.draw();
+            _dt2.draw();
+
+
+
+        });
+
+        function CreateCutByBoard()
+        {
+            $.post('Home/CreateCutByBoard', {id:@projectId}, function(response){ 
+
+                  location.reload();
+            });
+        }
+
+        $(document).on('click', '.updateModal', function() {
+            debugger;
+            _pageUrl = "/Home" + $(this).prop('name');
+            $('#modaldiv').empty();
+            $('#popupmodal').modal("show");
+            $('#modaldiv').load(_pageUrl);
+
+
+        });
+    </script>
+}
